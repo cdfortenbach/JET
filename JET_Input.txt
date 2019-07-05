@@ -1,0 +1,55 @@
+Instrument:, NIRSpec G395M  
+nfloor (ppm):, 25
+wavelimlo (microns):, 2.87
+wavelimhi (microns):, 5.18
+EOS_lo:, eos_5Xsolar_cond
+EOS_hi:, eos_1000Xsolar_cond
+Cloud_lo (Pa):, 0
+Cloud_hi (Pa):, 10000
+Res:, 100
+Jmag_sat:, 8.0
+Nrow_start:, 1
+Nrow_end:, 3
+Npdxo:, 1750
+dBIC_thresh:, 10
+RunExoT (Y/N):, Y
+RunPdxo (Y/N):, Y
+RunRank (Y/N):, Y
+
+
+# Instrument reference info:                              Res    nfloor  JET/OK     
+
+#   NIRCam F444W          (2.40-5.00mu);                        (30 ppm)     no
+#   NIRCam F322W2         (2.40-5.00mu);                        (30 ppm)     no
+#   NIRSpec G140M/F070LP  (0.70–1.27mu);                 (100)  (25 ppm)     no
+#   NIRSpec G140H/F070LP  (0.82–1.27mu);                 ( hi)  (25 ppm)     no
+#   NIRSpec G140M/F100LP  (0.97–1.87mu);                 (100)  (25 ppm)    yes
+#   NIRSpec G140H/F100LP  (0.97–1.31mu, 1.35–1.83mu);    ( hi)  (25 ppm)     no
+#   NIRSpec G235M/F170LP  (1.66–3.12mu);                 (100)  (25 ppm)    yes
+#   NIRSpec G235H/F170LP  (1.66–2.20mu, 2.27–3.07mu);    ( hi)  (25 ppm)     no
+#   NIRSpec G395M/F290LP  (2.87–5.18mu);                 (100)  (25 ppm)    yes
+#   NIRSpec G395H/F290LP  (2.87–3.72mu, 3.82–5.18mu);    ( hi)  (25 ppm)     no
+#   MIRI LRS              (5-12mu);                      ( 40)  (50 ppm)     no
+#   NIRISS SOSS_Or1       (0.83-2.81mu);                 (100)  (20 ppm)    yes
+#   NIRISS SOSS_Or2       (0.60-1.40mu);                        (20 ppm)     no
+#
+#
+# Saturation Limits (Jmag):
+#   Teff (K)                10000     5000     2500      Set
+# Disperser-filter
+#   NIRCam  PRISM/CLEAR      10.2     10.1     10.2     10.3
+#   NIRSpec G140M/F070LP      8.2      8.1      8.2      8.3
+#   NIRSpec G140M/F100LP      8.2      8.1      8.2      8.3
+#   NIRSpec G235M/F170LP      7.0      7.6      7.8      7.9
+#   NIRSpec G395M/F290LP      6.2      6.8      7.4      8.0
+#   NIRSpec G140H/F070LP      7.1      7.0      7.0      7.2          
+#   NIRSpec G140H/F100LP      7.1      7.0      7.0      7.2
+#   NIRSpec G235H/F170LP      5.9      6.4      6.7      6.8
+#   NIRSpec G395H/F290LP      5.1      5.7      6.2      6.3
+#				
+#				
+#  NIRISS SOSS mode (G2V star)							
+#   Subarray           size   order    Ngroups     Jmag      Set
+#   SUBSTRIP256  256 × 2048       1          2      8.5      8.6
+#   SUBSTRIP256  256 × 2048       2          2      7.2      7.3
+#   SUBSTRIP96    96 × 2048       1          2      7.5      7.6
