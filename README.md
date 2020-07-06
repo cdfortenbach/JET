@@ -1,4 +1,4 @@
-﻿# *JWST* Exoplanet Targeting program (JET)
+# *JWST* Exoplanet Targeting program (JET)
 Computer tool to rank lists of exoplanet targets for atmospheric characterization by *JWST*.
 
 ## Description
@@ -28,7 +28,7 @@ The *James Webb Space Telescope* (*JWST*) will devote significant observing time
 
 * An effort to make the code more efficient would be helpful. In particular, consideration of processing multiple targets with a parallel processing architecture would seem to be a worthwhile development project; however, this idea has not been further addressed here.
 
-* The full JET code has a memory storage footprint of approximately 3.7 GB.  A production run of a 2000 target catalog will generate about 1 GB of output (spectra, and various tables).  So, you need to plan on a total memory storage requirement of at least 4.7 GB for a large survey run.  In execution you will need about 4 GB of free RAM on top of any other system requirements. 
+* The full JET code has a memory storage footprint of approximately 3.7 GB.  A production run of a 2000 target catalog will generate about 1 GB of output (spectra, and various tables).  So, you need to plan on a total memory storage requirement of at least 4.7 GB for a large survey run.  In execution you will need about 4 GB of free RAM on top of any other system requirements.
 
 ### Software Configuration/Installation
 * The desktop computer described in the previous section runs the Windows 7 Ultimate (SP1) operating system.  We chose to develop the JET suite of programs to run in a Linux environment.  We used Oracle VirtualBox software (5.1.26) to run a Linux guest OS (specifically Ubuntu 16.04) under the Windows 7 host.  Of course a dedicated Linux machine should work just fine.  The installation and execution instructions provided here assume that the user will be using a Linux OS.
@@ -56,9 +56,9 @@ The *James Webb Space Telescope* (*JWST*) will devote significant observing time
 * For those packages that are not included in the basic conda distribution, you will need to enable certain additional distribution channels with:
 
  ```conda config --add channels conda-forge```
- 
+
  and
- 
+
  ```conda config --add channels http://ssb.stsci.edu/astroconda```
 
  This only needs to be done once, not for each package.
@@ -68,11 +68,11 @@ The *James Webb Space Telescope* (*JWST*) will devote significant observing time
 * Many of the required packages (unless they have < pip > in the build column of Table 2) can then be installed from the Linux command line with:
 
  ```conda install package_name=version=build_string```
- 
+
  For example:
- 
+
  ```conda install joblib=0.11=py36_0```
- 
+
 * For those packages with a non-conda channel, you should use the command:
 
  ```conda install -c channel package_name=version=build_string```
@@ -80,14 +80,14 @@ The *James Webb Space Telescope* (*JWST*) will devote significant observing time
  For example:
 
  ```conda install -c conda-forge astropy=3.2.3```
- 
+
  or another example:
- 
+
  ```conda install -c http://ssb.stsci.edu/astroconda photutils=0.4.1```
 
 * For the remaining packages, you will need to use the pip package manager.  For example, to install numpy use the command:
 
- ```pip install numpy=1.14.0``` 
+ ```pip install numpy=1.14.0```
 
 * When this process has been completed for all of the required packages, again use the Linux command ```conda list``` to verify that all packages and modules shown in Table 2 are installed:
 
@@ -115,16 +115,16 @@ The *James Webb Space Telescope* (*JWST*) will devote significant observing time
 
 1. Now, choose/create a working directory for the JET code within your Linux system file structure.
 
-2. Open a terminal in your Linux Download directory.  Then, download the JET repository tar file from GitHub with the command: 
+2. Open a terminal in your Linux Download directory.  Then, download the JET repository tar file from GitHub with the command:
 
- ```curl -L https://github.com/cdfortenbach/JET/tarball/master > master``` 
+ ```curl -L https://github.com/cdfortenbach/JET/tarball/master > master```
 
    This is a big file, so it may take a few minutes.  You should eventually see a folder/directory called **master** appear in the Download directory.
 
-3. Now, unpack the **master** tar file with the command: 
+3. Now, unpack the **master** tar file with the command:
 
- ```tar -xvzf master``` 
- 
+ ```tar -xvzf master```
+
    you should now see a new folder/directory called **cdfortenbach-JET-*commitID#***.   
 
 4. Open this folder/directory and move the contents to your working directory.  
@@ -163,47 +163,47 @@ The *James Webb Space Telescope* (*JWST*) will devote significant observing time
 | userInput.in                | internal transfer file assoc. with Exo-Transmit                                          |
 
 
-7. Next, you need to download certain data-files associated with PandExo/Pandeia.  The first is a set of files for Pandeia itself, which can be downloaded from: https://stsci.app.box.com/v/pandeia-refdata-v1p4.  Once the download is complete, move the tar file from your download folder to the JET working directory.  This is in gzip form and can be unpacked in the working directory. Use the command: 
+7. Next, you need to download certain data-files associated with PandExo/Pandeia.  The first is a set of files for Pandeia itself, which can be downloaded from: https://stsci.app.box.com/v/pandeia-refdata-v1p4.  Once the download is complete, move the tar file from your download folder to the JET working directory.  This is in gzip form and can be unpacked in the working directory. Use the command:
 
  ```$ tar -xvzf pandeia_data-1.4.tar.gz```  
 
   to unpack the tar file. Once the files are unpacked you should be left with a folder/directory named **pandeia_data-1.4**.  The tar file can then be deleted.
 
-8. Next, you will need to download another set of data-files associated with PandExo.  The second set of data-files are for pysynphot. Pandeia uses pysynphot internally for creating reference spectra. The pysynphot reference files may be downloaded from: https://archive.stsci.edu/pub/hst/pysynphot/.  We want to download **synphot5.tar.gz**.  Move the tar file from your download folder to the JET working directory.  This is also in gzip form and can be unpacked in the working directory with the command: 
+8. Next, you will need to download another set of data-files associated with PandExo.  The second set of data-files are for pysynphot. Pandeia uses pysynphot internally for creating reference spectra. The pysynphot reference files may be downloaded from: https://archive.stsci.edu/pub/hst/pysynphot/.  We want to download **synphot5.tar.gz**.  Move the tar file from your download folder to the JET working directory.  This is also in gzip form and can be unpacked in the working directory with the command:
 
  ```$ tar -xvzf synphot5.tar.gz```
 
   Once the files are unpacked you should be left with a folder/directory named **grp** and the tar file.  The tar file can be deleted.
 
- Your working directory should now have all of the necessary elements of JET, including all files and folders associated with Exo-Transmit and PandExo. Of course it is possible to download the latest version of Exo-Transmit (source code) from GitHub (see https://github.com/elizakempton/Exo_Transmit), but for simplicity we have chosen to include a fully compiled, and tested version of Exo-Transmit as part of the JET download.  There are also some minor changes to a couple of the baseline Exo-Transmit data-files that we have made for JET to work properly. 
+ Your working directory should now have all of the necessary elements of JET, including all files and folders associated with Exo-Transmit and PandExo. Of course it is possible to download the latest version of Exo-Transmit (source code) from GitHub (see https://github.com/elizakempton/Exo_Transmit), but for simplicity we have chosen to include a fully compiled, and tested version of Exo-Transmit as part of the JET download.  There are also some minor changes to a couple of the baseline Exo-Transmit data-files that we have made for JET to work properly.
 
   In some cases, high-metallicity atmospheres in particular, can be optically thick all the way to the very top of the atmosphere, at certain wavelengths.  This will cause a hard cutoff of the spectrum at a specific transit depth.  To extend the atmosphere to higher levels (i.e., lower pressures), more lines have been added to the original release T-P files (we went from 333 to 533 lines), extending the decaying exponential to lower pressure.  The number of optical depth points given in the file: **otherInput.in**, has also been be modified to give the correct number of lines for the new T-P files.  You should not need to edit these files further.
 
   There are several input files associated with Exo-Transmit that have not been described in detail (e.g., **selectChem.in**, **otherInput.in**, and **userInput.in**).  For our purposes these should not have to be disturbed by the user; however, it is possible to make changes to these if necessary.  Further details can be found in the Exo-Transmit user manual included in this repository, or at https://github.com/elizakempton/Exo_Transmit.
- 
+
 9. It is recommended that the user edit certain print statements in the **PandExo.engine** (installed as a Python package in the Anaconda directory) that are unnecessary and time consuming in our long, many-target runs. Specifically, we recommend that you "comment out" (add leading # character to the line) the following lines in **justdoit.py** and **jwst.py**:
 
     anconda3/lib/python3.6/site-packages/pandexo/engine/justdoit.py - line 267
     	should be:   ```#print("Running Single Case for: " + inst[0])```
-  
+
     anconda3/lib/python3.6/site-packages/pandexo/engine/jwst.py - line 153
     	should be:   ```#print("Optimization Reqested: Computing Duty Cycle")```
-  
+
     anconda3/lib/python3.6/site-packages/pandexo/engine/jwst.py - line 156
     	should be:   ```#print("Finished Duty Cycle Calc")```
-  
+
     anconda3/lib/python3.6/site-packages/pandexo/engine/jwst.py - line 162
     	should be:   ```#print("Starting Out of Transit Simulation")```
-  
+
     anconda3/lib/python3.6/site-packages/pandexo/engine/jwst.py - line 169
     	should be:   ```#print("End out of Transit")```
-  
+
     anconda3/lib/python3.6/site-packages/pandexo/engine/jwst.py - line 176
     	should be:   ```#print("Starting In Transit Simulation")```
-  
+
     anconda3/lib/python3.6/site-packages/pandexo/engine/jwst.py - line 178
     	should be:   ```#print("End In Transit")```
-  
+
 10. That’s it!  You have completed the JET installation.
 
 
@@ -222,47 +222,47 @@ The following step-by-step process should guide you through making a run with th
 | Parameter Description                                    | User Input                |
 |:---------------------------------------------------------|:--------------------------|
 | Starting target from catalog for this run:               |, **5**|   
-| Ending target from catalog:                              |, **7**| 
-|                                                          |                           | 
-| JWST instrument:                                         |, **NIRSpec G395M**| 
-| Wavelength short limit (microns):                        |, **2.87**| 
-| Wavelength long limit (microns):                         |, **5.18**| 
-| Jmag limit (Teff = 10000K):                              |, **6.2**| 
-| Jmag limit (Teff = 5000K):                               |, **6.8**| 
-| Jmag limit (Teff = 2500K):                               |, **7.4**| 
-| Detector linear response limit (% FW):                   |, **80**| 
-| Noise floor (nfloor) (ppm):                              |, **25**| 
-| R value of sim (Res):                                    |, **100**| 
-| Number of dBIC samples for each ntr grid pt.:            |, **2000**| 
-| Detection threshold (dBIC):                              |, **10**| 
-| Free model spectrum BIC parameters:                      |, **5**| 
+| Ending target from catalog:                              |, **7**|
 |                                                          |                           |
-| Eq. of State (lo metal atm):                             |, **eos_5Xsolar_cond**| 
-| Cloud_lo (Pa):                                           |, **0**| 
-| Eq. of State (hi metal atm):                             |, **eos_1000Xsolar_cond**| 
-| Cloud_hi (Pa):                                           |, **10000**| 
+| JWST instrument:                                         |, **NIRSpec G395M**|
+| Wavelength short limit (microns):                        |, **2.87**|
+| Wavelength long limit (microns):                         |, **5.18**|
+| Jmag limit (Teff = 10000K):                              |, **6.2**|
+| Jmag limit (Teff = 5000K):                               |, **6.8**|
+| Jmag limit (Teff = 2500K):                               |, **7.4**|
+| Detector linear response limit (% FW):                   |, **80**|
+| Noise floor (nfloor) (ppm):                              |, **25**|
+| R value of sim (Res):                                    |, **100**|
+| Number of dBIC samples for each ntr grid pt.:            |, **2000**|
+| Detection threshold (dBIC):                              |, **10**|
+| Free model spectrum BIC parameters:                      |, **5**|
 |                                                          |                           |
-| Out of transit factor (% tdur):                          |, **100**| 
-| \+ Out of transit "timing tax" (sec):                    |, **6300**| 
-| Slew duration avg. (sec):                                |, **1800**| 
-| SAMs: small angle maneuvers (sec):                       |, **138**| 
-| GS Acq: guide star acquisition(s)(sec):                  |, **312**| 
-| Targ Acq: target acquisition if any (sec):               |, **62**| 
-| Exposure Ovhd: factor 1:                                 |, **0.0536**| 
-| Exposure Ovhd: factor 2 (sec):                           |, **0**| 
-| Mech: mechanism movements (sec):                         |, **220**| 
-| OSS: Onboard Script System compilation (sec):            |, **58**| 
-| MSA: NIRSpec MSA configuration (sec):                    |, **0**| 
-| IRS2: NIRSpec IRS2 Detector Mode setup (sec):            |, **217**| 
-| Visit Ovhd: visit cleanup activities (sec):              |, **102**| 
-| Obs Ovhd factor (%):                                     |, **16**| 
+| Eq. of State (lo metal atm):                             |, **eos_5Xsolar_cond**|
+| Cloud_lo (Pa):                                           |, **0**|
+| Eq. of State (hi metal atm):                             |, **eos_1000Xsolar_cond**|
+| Cloud_hi (Pa):                                           |, **10000**|
+|                                                          |                           |
+| Out of transit factor (% tdur):                          |, **100**|
+| \+ Out of transit "timing tax" (sec):                    |, **6300**|
+| Slew duration avg. (sec):                                |, **1800**|
+| SAMs: small angle maneuvers (sec):                       |, **138**|
+| GS Acq: guide star acquisition(s)(sec):                  |, **312**|
+| Targ Acq: target acquisition if any (sec):               |, **62**|
+| Exposure Ovhd: factor 1:                                 |, **0.0536**|
+| Exposure Ovhd: factor 2 (sec):                           |, **0**|
+| Mech: mechanism movements (sec):                         |, **220**|
+| OSS: Onboard Script System compilation (sec):            |, **58**|
+| MSA: NIRSpec MSA configuration (sec):                    |, **0**|
+| IRS2: NIRSpec IRS2 Detector Mode setup (sec):            |, **217**|
+| Visit Ovhd: visit cleanup activities (sec):              |, **102**|
+| Obs Ovhd factor (%):                                     |, **16**|
 | DS Ovhd (sec):                                           |, **0**|        
 |                                                          |                           |
-| RunExoT (Y/N):                                           |, **Y**| 
-| RunPdxo (Y/N):                                           |, **Y**| 
-| RunRank (Y/N):                                           |, **Y**| 
+| RunExoT (Y/N):                                           |, **Y**|
+| RunPdxo (Y/N):                                           |, **Y**|
+| RunRank (Y/N):                                           |, **Y**|
 
-  
+
   * The starting and ending rows to analyze from the target_survey.txt file need to be specified.
 
   * The instrument/mode (e.g., NIRSpec G395M) should be selected from the listing (comments further down in the .txt file).  Four of the modes have been tested.  
@@ -287,7 +287,7 @@ The following step-by-step process should guide you through making a run with th
 
   * Sometimes it is useful to bypass certain parts of the code.  For example, if the model atmospheres have already been generated for a batch of targets.  It may makes sense to bypass the ExoT_Master section of the code.  The parameters RunExoT, RunPdxo, and RunRank can be toggled Y or N, to indicate whether or not to bypass that code element.  For a full run we will use all three of these parameters set to Y.
 
- 
+
 4. Next, make sure that the **target\_survey.txt** file in the working directory has the appropriate number of rows for your run.  Various example **target\_survey.txt** files are included in the **Target\_Survey** folder/directory in the repository.  
   * For our example run we will use the full Sullivan survey/catalog **target\_survey\_(Sullivan_survey).txt**.  The **target\_survey.txt** file in the repository is the full Sullivan survey/catalog so for our initial example run you should not need to make changes.
 
@@ -296,7 +296,7 @@ The following step-by-step process should guide you through making a run with th
  ./JET_Master.57.sh
  ```
 
-   * After a few seconds, you should see . . . 
+   * After a few seconds, you should see . . .
 
  ```dos
  !Warning: The starting target value (Nrow_start) is not in sequence.
@@ -307,26 +307,26 @@ The following step-by-step process should guide you through making a run with th
  ```
 6. You should enter **Y** (for the example run we are assuming that you are starting from scratch).
 
-   * After a few seconds, you should see . . . 
+   * After a few seconds, you should see . . .
  ```dos
  Running ExoT_Master:
 
- Reading in survey data . . . 
+ Reading in survey data . . .
 
  Computing model transmission spectra using Exo-Transmit:
 
-      Generating model spectra for target:  5 
+      Generating model spectra for target:  5
 
-      Generating model spectra for target:  6 
+      Generating model spectra for target:  6
 
-      Generating model spectra for target:  7 
+      Generating model spectra for target:  7
 
  Elapsed time for ExoT_Master (sec):  130.65741515159607
 
  !Warning: The starting target value (Nrow_start) is not in sequence.
- 
+
  If you proceed you may overwrite the previous entries.
- 
+
  Proceed with Pdxo? (Y/N):
  ```
 
@@ -338,38 +338,38 @@ The following step-by-step process should guide you through making a run with th
 
  Transferring planetary system data and model spectra to Pandexo . . .
 
-      Generating simulated instrument spectra for target:  5 
+      Generating simulated instrument spectra for target:  5
 
-         Comparing simulation to model spectrum and flat line for lo_metal atm: 
+         Comparing simulation to model spectrum and flat line for lo_metal atm:
 
                min # of transits for mean dBIC (less one sigma) > 10 :  1
 
 
-         Comparing simulation to model spectrum and flat line for hi_metal atm: 
+         Comparing simulation to model spectrum and flat line for hi_metal atm:
 
                mean dBIC (less one sigma) < 10 for 50 transits ---> no detection
 
 
-      Generating simulated instrument spectra for target:  6 
+      Generating simulated instrument spectra for target:  6
 
-         Comparing simulation to model spectrum and flat line for lo_metal atm: 
+         Comparing simulation to model spectrum and flat line for lo_metal atm:
 
                min # of transits for mean dBIC (less one sigma) > 10 :  1
 
 
-         Comparing simulation to model spectrum and flat line for hi_metal atm: 
+         Comparing simulation to model spectrum and flat line for hi_metal atm:
 
                min # of transits for mean dBIC (less one sigma) > 10 :  47
 
 
-      Generating simulated instrument spectra for target:  7 
+      Generating simulated instrument spectra for target:  7
 
-         Comparing simulation to model spectrum and flat line for lo_metal atm: 
+         Comparing simulation to model spectrum and flat line for lo_metal atm:
 
                min # of transits for mean dBIC (less one sigma) > 10 :  1
 
 
-         Comparing simulation to model spectrum and flat line for hi_metal atm: 
+         Comparing simulation to model spectrum and flat line for hi_metal atm:
 
                min # of transits for mean dBIC (less one sigma) > 10 :  11
 
@@ -386,7 +386,7 @@ The following step-by-step process should guide you through making a run with th
 8.  Now we can examine the products of the run.  Two summary tables should have been deposited into the **JET\_Smry_tables** folder/directory.  They are time and date stamped, and named something like: **JET_Smry_20190922-093016_un-ranked**, and **JET_Smry_20190922-093016.txt**.
 
  We can also examine the spectral data tables, and plots that have been deposited into the **Spectra** folder/directory.   For our test run you should see the files listed in Table 4.  
-	
+
  Table 4. Files deposited in **Spectra** folder associated with test run:
 
 | File name                       | Description                                                          |
@@ -409,13 +409,13 @@ The following step-by-step process should guide you through making a run with th
 | Trans_Spec_Xfer_6_lo_metal.txt  | xfer data of re-binned model spectrum for lo-metal atm, targ 6       |
 | Trans_Spec_Xfer_7_hi_metal.txt  | xfer data of re-binned model spectrum for hi-metal atm, targ 7       |
 | Trans_Spec_Xfer_7_lo_metal.txt  | xfer data of re-binned model spectrum for lo-metal atm, targ 7       |
-	
+
  The dBIC-vs-number-of-transits plots have been deposited into the **dBIC** folder/directory.  For our test run you should see only two files (**dBIC_6_hi_metal.svg** and **dBIC_7_hi_metal.svg** ).  Some of the plots may appear to be missing.  They are not really missing, but rather they were not plotted due to a non-detection condition (e.g., saturation, etc.).  
 
  A copy of the **Pdxo_Output.txt** file (with target limits noted **Pdxo_Output_(5 - 7).txt**) has been deposited into the **Pdxo_Output_archive** folder.  This is a copy of the latest appended version of the **Pdxo_Output.txt** file.  This is essentially a backup if anything happens to the raw **Pdxo_Output.txt** file (e.g. an inadvertent overwrite, etc.).   If you are doing a series of runs where the targets are sequential then this file is being appended for each run.  It is over-written if the targets are out of sequence.
 
  You have completed the example run.  Congratulations!
- 
+
 ### Additional Tools
 
 As we've mentioned, the overall JET run time is ~ 3.4 minutes per target (in a single processor mode).  If you are interested in running a large target survey/catalog like "Sullivan" through JET, it is possible to reduce the clock time required by duplicating the JET working directory and splitting the target list.  The process proceeds normally as one instantiation of JET runs the first set of the split list (say from target 1 - 950), and another instantiation of JET runs the other set of the split list (from 951 - 1984).
@@ -433,7 +433,7 @@ Charles Fortenbach
 ## Citations
 When publishing results based on usage of JET please cite:
 
-for JET: 
+for JET:
 Fortenbach, C. D., & Dressing, C. D., 2020, arXiv:2002.01495 (https://ui.adsabs.harvard.edu/abs/2020arXiv200201495F)
 
 and the following dependencies:
@@ -450,19 +450,19 @@ Lupu, R. E., Zahnle, K., Marley, M. S., et al., 2014, ApJ, 784, 27
 PandExo:
 Batalha, N. E., Mandell, A., Pontoppidan, K., et al. 2017, Publications of the Astronomical Society of the Pacific, 129, 064501
 
-astropy: 
+astropy:
 The Astropy Collaboration, Price-Whelan, A. M., Sip}ocz, B. M., et al. 2018, ArXiv e-prints, arXiv:1801.02634
 
-matplotlib: 
+matplotlib:
 Hunter, J. D. 2007, Computing In Science & Engineering, 9, 90
 
-numpy: 
+numpy:
 Oliphant, T. E. 2015, Guide to NumPy, 2nd edn. (USA: CreateSpace Independent Publishing Platform)
 
-scipy: 
+scipy:
 Jones, E., Oliphant, T., Peterson, P., et al. 2001, SciPy: Open source scientific tools for Python
 
-SpectRes: 
+SpectRes:
 Carnall, A. C. 2017, arXiv:1705.05165, 1705.05165v1
 
 ## Version History
@@ -474,7 +474,7 @@ Carnall, A. C. 2017, arXiv:1705.05165, 1705.05165v1
     Update of Pandeia data-files to pandeia_data-1.4.
     Made path values indirect to enable easier portability.
     Modified path to grp directory in shell script for simpler installation.
-    
+
 * 1.1.0 (2019-10-01)
     New routine to handle instrument brightness limits.
     Increased number of model parameters from 4 to 5 for BIC calculation.
@@ -482,7 +482,7 @@ Carnall, A. C. 2017, arXiv:1705.05165, 1705.05165v1
     Various minor corrections and updates.
 
 * 1.2.0 (2019-12-04)
-    Made the number of free model spectrum BIC parameters a user input. 
+    Made the number of free model spectrum BIC parameters a user input.
 
 * 1.3.0 (2020-04-12)
     Updated the calculation of observation time elements, t_dwell and Science_time in Pdxo_Master based on latest STScI guidance.
@@ -496,4 +496,4 @@ Carnall, A. C. 2017, arXiv:1705.05165, 1705.05165v1
 This project is licensed under the GNU GPLv3 License - see the LICENSE.md file for details.
 
 ## Acknowledgments
-The code discussed here was developed as part of C. Fortenbach's Master's thesis project at San Francisco State University. Prof. Courtney Dressing (UC Berkeley) was the thesis advisor on this effort and provided guidance and inspiration throughout.  C.F. would like to acknowledge the support of Prof. Mohsen Janatpour (College of San Mateo), and Profs. Joseph Barranco (SF State Univ.), Andisheh Mahdavi (SF State Univ.), and Stephen Kane (UC Riverside).  We also appreciate the assistance of Josh Lamstein, Shervin Sahba, Dirk Kessler, Paul Seawell, Craig Schuler, and Arjun Savel, who helped with various aspects of the code development.  We are grateful to Prof. Eliza Kempton (Univ. of Maryland) for her guidance on installation and usage of the Exo-Transmit code.  We would like to thank Dr. Tom Greene (NASA Ames) for his insight and guidance on a number of issues.  We would also like to acknowledge the assistance of Dr. Natasha Batalha (UC Santa Cruz) the lead author of the PandExo code. 
+The code discussed here was developed as part of C. Fortenbach's Master's thesis project at San Francisco State University. Prof. Courtney Dressing (UC Berkeley) was the thesis advisor on this effort and provided guidance and inspiration throughout.  C.F. would like to acknowledge the support of Prof. Mohsen Janatpour (College of San Mateo), and Profs. Joseph Barranco (SF State Univ.), Andisheh Mahdavi (SF State Univ.), and Stephen Kane (UC Riverside).  We also appreciate the assistance of Josh Lamstein, Shervin Sahba, Dirk Kessler, Paul Seawell, Craig Schuler, and Arjun Savel, who helped with various aspects of the code development.  We are grateful to Prof. Eliza Kempton (Univ. of Maryland) for her guidance on installation and usage of the Exo-Transmit code.  We would like to thank Dr. Tom Greene (NASA Ames) for his insight and guidance on a number of issues.  We would also like to acknowledge the assistance of Dr. Natasha Batalha (UC Santa Cruz) the lead author of the PandExo code.

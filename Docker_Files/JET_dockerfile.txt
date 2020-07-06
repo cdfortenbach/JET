@@ -1,0 +1,48 @@
+FROM continuumio/anaconda3
+LABEL maintainer='Emma Turtelboom, eturtelboom@berkeley.edu'
+RUN conda create -n myenv python=3.6.2
+SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
+
+#Enable extra distribution channels for packages not included in basic conda
+RUN conda config --add channels conda-forge
+RUN conda config --add channels http://ssb.stsci.edu/astroconda
+
+#Install packages for JET via basic conda
+RUN conda install -y astropy=3.2.3
+RUN conda install -y matplotlib=2.2.2
+
+#Install packages for JET via conda forge channel
+RUN conda install -y -c conda-forge bokeh=0.12.6=py36_0
+RUN conda install -y -c conda-forge joblib=0.11=py36_0
+RUN conda install -y -c conda-forge pyfftw=0.10.4
+RUN conda install -y -c conda-forge scipy=1.0.0=py36_blas_openblas_201
+RUN conda install -y -c conda-forge sphinx=1.5.6
+
+#Install packages for JET via http://ssb.stsci.edu/astroconda channel
+RUN conda install -y -c http://ssb.stsci.edu/astroconda photutils=0.4.1
+RUN conda install -y -c http://ssb.stsci.edu/astroconda pysynphot=0.9.8.8=py36_1
+RUN conda install -y -c http://ssb.stsci.edu/astroconda synphot=0.1.3
+
+#Install remaining packages with pip
+RUN python -m pip install numpy==1.14.0
+RUN python -m pip install pandeia.engine==1.4
+
+#Install build-essential to allow next package installation
+RUN apt-get update && apt-get install -y build-essential
+RUN python -m pip install pandexo.engine==1.3
+RUN python -m pip install pyephem==3.7.6.0
+RUN python -m pip install spectres==2.0.0
+
+#Install git
+RUN apt-get update && apt-get install -y git
+#Clone JET repository
+RUN git clone https://github.com/cdfortenbach/JET.git
+
+#Set working directory
+WORKDIR /JET
+
+#Copy pandeia and Pandexo .tar files from user's computer (make sure the two .tar files are in the directory you ran docker from)
+COPY pandeia_data-1.4.tar.gz /JET/
+RUN tar -xvzf pandeia_data-1.4.tar.gz
+COPY synphot5.tar.gz /JET/
+RUN tar -xvzf synphot5.tar.gz
